@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+#
+#
+# CLI to imagebin.ca
+#
+
+require 'rubygems'
+require 'optparse'
+require 'httpclient'
+
+options = { "t" => "file", 
+            "name" => "", 
+            "tags" => "", 
+            "description" => "", 
+            "adult" => "f",
+}
+
+opts = OptionParser.new do |opts|
+    opts.banner =  "imagebin.rb is a CLI to http://imagebin.ca
+    Example: ./imagebin.rb -f <pic.png>" 
+
+    opts.separator ""
+    opts.separator "Options:"
+
+    opts.on("-f <file>", "--file <file>", String, "Use a file for input") do |file|
+        options[:f] = file
+    end
+
+    opts.on("-n [name]", "--name [name]", String, "Name") do |n|
+        options[:name] = n
+    end
+
+    opts.on("-t [tags]", "--tags [tags]", String, "Comma separated") do |tags|
+        options[:tags] = tags
+    end
+
+    opts.on("-d [description]", "--description [description]", String, "Description") do |desc|
+        options[:description] = desc
+    end
+
+    opts.on("-p", "--private", "Private") do |priv|
+        options[:adult] = "priv"
+    end
+
+    opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+    end
+end
+
+opts.parse(ARGV)
+
+clnt = HTTPClient.new("http://imagebin.ca/upload.php")
+File.open(options[:f]) do |file|
+    options[:f] = file
+    puts clnt.post('http://imagebin.ca/upload.php', options).content.match(/http.+?\.html/)
+end
