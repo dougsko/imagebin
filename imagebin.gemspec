@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{imagebin}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["dougsko"]
@@ -13,26 +13,28 @@ Gem::Specification.new do |s|
   s.executables = ["imagebin"]
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc"
+     "README.rdoc"
   ]
   s.files = [
-    "LICENSE",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION.yml",
-    "bin/imagebin",
-    "spec/imagebin_spec.rb",
-    "spec/spec_helper.rb"
+    ".document",
+     ".gitignore",
+     "LICENSE",
+     "README.rdoc",
+     "Rakefile",
+     "VERSION.yml",
+     "bin/imagebin",
+     "imagebin.gemspec",
+     "spec/imagebin_spec.rb",
+     "spec/spec_helper.rb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://github.com/dougsko/imagebin}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.2}
+  s.rubygems_version = %q{1.3.4}
   s.summary = %q{Command line interface to imagebin.ca}
   s.test_files = [
     "spec/spec_helper.rb",
-    "spec/imagebin_spec.rb"
+     "spec/imagebin_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
