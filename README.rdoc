@@ -1,6 +1,6 @@
 = imagebin
 
-imagebin.rb is a CLI to http://imagebin.ca
+imagebin is a CLI to http://imagebin.ca
     Example: imagebin -f <pic.png>
 
 Options:
