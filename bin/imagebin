@@ -54,9 +54,7 @@ opts = OptionParser.new do |opts|
     end
 
     opts.on("-p", "--private", "Private") do |priv|
-        if priv == true
-            options[:adult] = "t"
-        end
+        options[:adult] = "t"
     end
 
     opts.on_tail("-h", "--help", "Show this message") do
