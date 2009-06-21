@@ -66,7 +66,7 @@ end
 opts.parse(ARGV)
 
 clnt = HTTPClient.new("http://imagebin.ca/upload.php")
-File.open(options[:f]) do |file|
-    options[:f] = file
+File.open(options["f"]) do |file|
+    options["f"] = file
     puts clnt.post('http://imagebin.ca/upload.php', options).content.match(/http.+?\.html/)
 end
