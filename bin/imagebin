@@ -32,7 +32,7 @@ options = { "t" => "file",
 
 opts = OptionParser.new do |opts|
     opts.banner =  "imagebin.rb is a CLI to http://imagebin.ca
-    Example: ./imagebin.rb -f <pic.png>" 
+    Example: imagebin -f <pic.png>" 
 
     opts.separator ""
     opts.separator "Options:"

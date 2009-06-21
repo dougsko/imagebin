@@ -1,7 +1,7 @@
 = imagebin
 
 imagebin.rb is a CLI to http://imagebin.ca
-    Example: ./imagebin.rb -f <pic.png>
+    Example: imagebin -f <pic.png>
 
 Options:
     -f, --file <file>                Use a file for input
