@@ -1,6 +1,15 @@
 = imagebin
 
-Description goes here.
+imagebin.rb is a CLI to http://imagebin.ca
+    Example: ./imagebin.rb -f <pic.png>
+
+Options:
+    -f, --file <file>                Use a file for input
+    -n, --name [name]                Name
+    -t, --tags [tags]                Comma separated
+    -d, --description [description]  Description
+    -p, --private                    Private
+    -h, --help                       Show this message
 
 == Copyright
 
