@@ -9,7 +9,8 @@ begin
     gem.email = "dougtko@gmail.com"
     gem.homepage = "http://github.com/dougsko/imagebin"
     gem.authors = ["dougsko"]
-
+    gem.add_dependency 'httpclient'
+    gem.description = 'Command line interface to imagebin.ca'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
