@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/dougsko/imagebin}
   s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = ["lib"]
+  s.require_paths = ["/bin"]
   s.rubygems_version = %q{1.3.4}
   s.summary = %q{Command line interface to imagebin.ca}
   s.test_files = [
