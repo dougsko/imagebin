@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "imagebin"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Command line interface to imagebin.ca}
     gem.email = "dougtko@gmail.com"
     gem.homepage = "http://github.com/dougsko/imagebin"
     gem.authors = ["dougsko"]
