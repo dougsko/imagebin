@@ -38,23 +38,23 @@ opts = OptionParser.new do |opts|
     opts.separator "Options:"
 
     opts.on("-f <file>", "--file <file>", String, "Use a file for input") do |file|
-        options[:f] = file
+        options["f"] = file
     end
 
     opts.on("-n [name]", "--name [name]", String, "Name") do |n|
-        options[:name] = n
+        options["name"] = n
     end
 
     opts.on("-t [tags]", "--tags [tags]", String, "Comma separated") do |tags|
-        options[:tags] = tags
+        options["tags"] = tags
     end
 
     opts.on("-d [description]", "--description [description]", String, "Description") do |desc|
-        options[:description] = desc
+        options["description"] = desc
     end
 
     opts.on("-p", "--private", "Private") do |priv|
-        options[:adult] = "t"
+        options["adult"] = "t"
     end
 
     opts.on_tail("-h", "--help", "Show this message") do
