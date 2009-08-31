@@ -21,7 +21,7 @@
 
 require 'rubygems'
 require 'optparse'
-require 'httpclient'
+require 'imagebin'
 
 options = { "t" => "file", 
             "name" => "", 
@@ -65,8 +65,9 @@ end
 
 opts.parse(ARGV)
 
-clnt = HTTPClient.new("http://imagebin.ca/upload.php")
 File.open(options["f"]) do |file|
     options["f"] = file
-    puts clnt.post('http://imagebin.ca/upload.php', options).content.match(/http.+?\.html/)
+    Imagebin.new(options) do |link|
+        puts link 
+    end
 end
