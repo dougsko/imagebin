@@ -13,6 +13,8 @@ begin
     gem.description = 'Command line interface to imagebin.ca'
     gem.require_paths = ['/bin', '/lib']
     gem.files = FileList["[A-Z]*", "{bin,generators,lib,spec}/**/*"]
+    gem.add_dependency "hpricot"
+    gem.add_dependency "httpclient"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
