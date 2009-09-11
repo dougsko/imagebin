@@ -28,6 +28,7 @@ options = { "t" => "file",
             "tags" => "", 
             "description" => "", 
             "adult" => "f",
+            "direct_link" => "0",
 }
 
 opts = OptionParser.new do |opts|
@@ -57,6 +58,10 @@ opts = OptionParser.new do |opts|
         options["adult"] = "t"
     end
 
+    opts.on("-l", "--link", "Direct link to picture file") do |direct_link|
+        options["direct_link"] = "1"
+    end
+
     opts.on_tail("-h", "--help", "Show this message") do
         puts opts
         exit
@@ -65,9 +70,12 @@ end
 
 opts.parse(ARGV)
 
-File.open(options["f"]) do |file|
-    options["f"] = file
-    Imagebin.new(options) do |link|
-        puts link 
-    end
+if options["direct_link"] == "0"
+    options.delete("direct_link")
+    ibin = Imagebin.new(options)
+    puts ibin.site_link
+elsif options["direct_link"] == "1"
+    options.delete("direct_link")
+    ibin = Imagebin.new(options)
+    puts ibin.pic_link
 end
