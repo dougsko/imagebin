@@ -9,6 +9,7 @@ Options:
     -t, --tags [tags]                Comma separated
     -d, --description [description]  Description
     -p, --private                    Private
+    -l, --link                       Direct link to picture file
     -h, --help                       Show this message
 
 == Copyright

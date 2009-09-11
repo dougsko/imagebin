@@ -36,7 +36,7 @@ class Imagebin
         @doc.at("a").innerHTML
     end
 
-    # Returns the direct link to the dile posted.
+    # Returns the direct link to the file posted.
     #
     #   ibin.pic_link    #=> "http://imagebin.ca/img/xxxxxxx.jpg"
     #
