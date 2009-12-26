@@ -20,10 +20,19 @@ class Imagebin
     #                        }) 
     #
     def initialize(options)
-        File.open(options["f"]) do |file|
-            options["f"] = file
+        @options = { "t" => "file",
+                     "name" => "",
+                     "tags" => "",
+                     "description" => "",
+                     "adult" => "f",
+                     "direct_link" => "0",
+                     "f" => "",
+        }
+        @options.merge!(options)
+        File.open(@options["f"]) do |file|
+            @options["f"] = file
             clnt = HTTPClient.new
-            res = clnt.post('http://imagebin.ca/upload.php', options).content
+            res = clnt.post('http://imagebin.ca/upload.php', @options).content
             @doc = Hpricot(res)
         end
     end

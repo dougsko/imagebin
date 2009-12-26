@@ -5,6 +5,9 @@
 # Requires: imagemagick, xmessage, and the imagebin script
 #
 
+require 'rubygems'
+require 'imagebin'
+
 # Location to save files
 working_dir = "/tmp"
 # Default delay before taking screenshots
@@ -13,7 +16,6 @@ delay = 3
 prefix = "screenshot"
 import = `which import`.chomp
 xmess = `which xmessage`.chomp
-imagebin = `which imagebin`.chomp
 
 # Check if the dir to store the screenshots exists, else create it: 
 Dir.mkdir(working_dir) if not File.exists?(working_dir)
@@ -21,8 +23,14 @@ Dir.mkdir(working_dir) if not File.exists?(working_dir)
 i = Dir.glob("#{working_dir}/#{prefix}.png").size + 1
 
 sleep delay
+
+# Take the screenshot with the 'import' command.
 system("#{import}", "-window", "root", "#{working_dir}/#{prefix}-#{i}.png")
-link = `#{imagebin} -p -l -f #{working_dir}/#{prefix}-#{i}.png`
-system("#{xmess}", "-nearmouse", "#{link}")
+
+ibin = Imagebin.new({ "f" => "#{working_dir}/#{prefix}-#{i}.png",
+                      "adult" => "t",
+                    })
+
+system("#{xmess}", "-nearmouse", "#{ibin.pic_link}")
 
 File.delete("#{working_dir}/#{prefix}-#{i}.png")
