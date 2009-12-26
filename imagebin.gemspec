@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{imagebin}
-  s.version = "0.3.2"
+  s.version = "0.3.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["dougsko"]
-  s.date = %q{2009-09-11}
+  s.date = %q{2009-12-26}
   s.description = %q{Command line interface to imagebin.ca}
   s.email = %q{dougtko@gmail.com}
-  s.executables = ["imagebin", "takeScreenshot.sh"]
+  s.executables = ["takeScreenshot.sh", "imagebin"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -35,8 +35,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Command line interface to imagebin.ca}
   s.test_files = [
-    "spec/spec_helper.rb",
-     "spec/imagebin_spec.rb"
+    "spec/imagebin_spec.rb",
+     "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
