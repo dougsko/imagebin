@@ -163,13 +163,22 @@ This method takes a hash containing the variables in the POST request.
 <pre>
     <span class="ruby-comment cmt"># File lib/imagebin.rb, line 22</span>
 22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>)
-23:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;f&quot;</span>]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
-24:             <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;f&quot;</span>] = <span class="ruby-identifier">file</span>
-25:             <span class="ruby-identifier">clnt</span> = <span class="ruby-constant">HTTPClient</span>.<span class="ruby-identifier">new</span>
-26:             <span class="ruby-identifier">res</span> = <span class="ruby-identifier">clnt</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">'http://imagebin.ca/upload.php'</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">content</span>
-27:             <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">res</span>)
-28:         <span class="ruby-keyword kw">end</span>
-29:     <span class="ruby-keyword kw">end</span></pre>
+23:         <span class="ruby-ivar">@options</span> = { <span class="ruby-value str">&quot;t&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;file&quot;</span>,
+24:                      <span class="ruby-value str">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+25:                      <span class="ruby-value str">&quot;tags&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+26:                      <span class="ruby-value str">&quot;description&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+27:                      <span class="ruby-value str">&quot;adult&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;f&quot;</span>,
+28:                      <span class="ruby-value str">&quot;direct_link&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;0&quot;</span>,
+29:                      <span class="ruby-value str">&quot;f&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+30:         }
+31:         <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>)
+32:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value str">&quot;f&quot;</span>]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+33:             <span class="ruby-ivar">@options</span>[<span class="ruby-value str">&quot;f&quot;</span>] = <span class="ruby-identifier">file</span>
+34:             <span class="ruby-identifier">clnt</span> = <span class="ruby-constant">HTTPClient</span>.<span class="ruby-identifier">new</span>
+35:             <span class="ruby-identifier">res</span> = <span class="ruby-identifier">clnt</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">'http://imagebin.ca/upload.php'</span>, <span class="ruby-ivar">@options</span>).<span class="ruby-identifier">content</span>
+36:             <span class="ruby-ivar">@doc</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">res</span>)
+37:         <span class="ruby-keyword kw">end</span>
+38:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -209,13 +218,13 @@ Returns the direct link to the file posted.
 					<div class="method-source-code"
 						id="pic-link-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/imagebin.rb, line 43</span>
-43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pic_link</span>
-44:         <span class="ruby-identifier">clnt</span> = <span class="ruby-constant">HTTPClient</span>.<span class="ruby-identifier">new</span>
-45:         <span class="ruby-identifier">res</span> = <span class="ruby-identifier">clnt</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;a&quot;</span>).<span class="ruby-identifier">innerHTML</span>).<span class="ruby-identifier">content</span>
-46:         <span class="ruby-identifier">doc</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">res</span>)
-47:         <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;#theimg&quot;</span>)[<span class="ruby-value str">&quot;src&quot;</span>]
-48:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/imagebin.rb, line 52</span>
+52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pic_link</span>
+53:         <span class="ruby-identifier">clnt</span> = <span class="ruby-constant">HTTPClient</span>.<span class="ruby-identifier">new</span>
+54:         <span class="ruby-identifier">res</span> = <span class="ruby-identifier">clnt</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;a&quot;</span>).<span class="ruby-identifier">innerHTML</span>).<span class="ruby-identifier">content</span>
+55:         <span class="ruby-identifier">doc</span> = <span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">res</span>)
+56:         <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;#theimg&quot;</span>)[<span class="ruby-value str">&quot;src&quot;</span>]
+57:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -249,10 +258,10 @@ Returns the link to the HTML site of the post.
 					<div class="method-source-code"
 						id="site-link-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/imagebin.rb, line 35</span>
-35:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">site_link</span>
-36:         <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;a&quot;</span>).<span class="ruby-identifier">innerHTML</span>
-37:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/imagebin.rb, line 44</span>
+44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">site_link</span>
+45:         <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value str">&quot;a&quot;</span>).<span class="ruby-identifier">innerHTML</span>
+46:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
