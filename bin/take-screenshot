@@ -6,7 +6,7 @@
 #
 
 require 'rubygems'
-require 'imagebin'
+require 'lib/imagebin'
 
 # Location to save files
 working_dir = "/tmp"
@@ -27,10 +27,11 @@ sleep delay
 # Take the screenshot with the 'import' command.
 system("#{import}", "-window", "root", "#{working_dir}/#{prefix}-#{i}.png")
 
-ibin = Imagebin.new({ "f" => "#{working_dir}/#{prefix}-#{i}.png",
-                      "adult" => "t",
+conf = YAML.load_file("#{ENV['HOME']}/.imgur.yaml")
+ibin = Imagebin.new({ "image" => "#{working_dir}/#{prefix}-#{i}.png",
+                      "key" => conf['key'],
                     })
 
-system("#{xmess}", "-nearmouse", "#{ibin.pic_link}")
+system("#{xmess}", "-nearmouse", "#{ibin.original_image}")
 
 File.delete("#{working_dir}/#{prefix}-#{i}.png")

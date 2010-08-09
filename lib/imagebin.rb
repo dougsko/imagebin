@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# imagebin.ca class
+# imgur.com API
 #
 
 require 'rubygems'
@@ -8,51 +8,46 @@ require 'httpclient'
 require 'hpricot'
 
 class Imagebin
-    # This method takes a hash containing the variables in the POST
-    # request.
-    #
-    #   ibin = Imagebin.new( { "t" => "file",
-    #                          "name" => "",
-    #                          "tags" => "",
-    #                          "description" => "",
-    #                          "adult" => "f",
-    #                          "f" => "file_path",
-    #                        }) 
-    #
     def initialize(options)
-        @options = { "t" => "file",
-                     "name" => "",
-                     "tags" => "",
-                     "description" => "",
-                     "adult" => "f",
-                     "direct_link" => "0",
-                     "f" => "",
+        @options = { "image" => "file",
+                     "key" => "api_key",
         }
         @options.merge!(options)
-        File.open(@options["f"]) do |file|
-            @options["f"] = file
+        File.open(@options["image"]) do |file|
+            @options["image"] = file
             clnt = HTTPClient.new
-            res = clnt.post('http://imagebin.ca/upload.php', @options).content
+            res = clnt.post('http://imgur.com/api/upload.xml', @options).content
             @doc = Hpricot(res)
+            raise @doc.at('error_msg').innerHTML if @doc.at('error_msg') != nil
         end
     end
 
-    # Returns the link to the HTML site of the post.
-    #
-    #   ibin.site_link    #=> "http://imagebin.ca/view/xxxxxxx.html"
-    #
-    def site_link
-        @doc.at("a").innerHTML
+    def image_hash
+        @doc.at('image_hash').innerHTML
     end
 
-    # Returns the direct link to the file posted.
-    #
-    #   ibin.pic_link    #=> "http://imagebin.ca/img/xxxxxxx.jpg"
-    #
-    def pic_link
-        clnt = HTTPClient.new
-        res = clnt.get(@doc.at("a").innerHTML).content
-        doc = Hpricot(res)
-        doc.at("#theimg")["src"]
+    def delete_hash
+        @doc.at('delete_hash').innerHTML
     end
+
+    def original_image
+        @doc.at("original_image").innerHTML
+    end
+
+    def large_thumbnail
+        @doc.at('large_thumbnail').innerHTML
+    end
+
+    def small_thumbnail
+        @doc.at('small_thumbnail').innerHTML
+    end
+
+    def imgur_page
+        @doc.at('imgur_page').innerHTML
+    end
+
+    def delete_page
+        @doc.at('delete_page').innerHTML
+    end
+
 end

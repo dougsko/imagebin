@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 #
-# CLI to imagebin.ca
+# CLI to imgur.com
 #
 # Copyright (C) 2009 dougsko
 # 
@@ -21,45 +21,21 @@
 
 require 'rubygems'
 require 'optparse'
-require 'imagebin'
+require 'lib/imagebin'
 
-options = { "t" => "file", 
-            "name" => "", 
-            "tags" => "", 
-            "description" => "", 
-            "adult" => "f",
-            "direct_link" => "0",
+options = { "image" => "file", 
+            "key" => "",
 }
 
 opts = OptionParser.new do |opts|
-    opts.banner =  "imagebin is a CLI to http://imagebin.ca
+    opts.banner =  "imagebin is a CLI to http://imgur.com
     Example: imagebin -f <pic.png>" 
 
     opts.separator ""
     opts.separator "Options:"
 
     opts.on("-f <file>", "--file <file>", String, "Use a file for input") do |file|
-        options["f"] = file
-    end
-
-    opts.on("-n [name]", "--name [name]", String, "Name") do |n|
-        options["name"] = n
-    end
-
-    opts.on("-t [tags]", "--tags [tags]", String, "Comma separated") do |tags|
-        options["tags"] = tags
-    end
-
-    opts.on("-d [description]", "--description [description]", String, "Description") do |desc|
-        options["description"] = desc
-    end
-
-    opts.on("-p", "--private", "Private") do |priv|
-        options["adult"] = "t"
-    end
-
-    opts.on("-l", "--link", "Direct link to picture file") do |direct_link|
-        options["direct_link"] = "1"
+        options["image"] = file
     end
 
     opts.on_tail("-h", "--help", "Show this message") do
@@ -70,12 +46,8 @@ end
 
 opts.parse(ARGV)
 
-if options["direct_link"] == "0"
-    options.delete("direct_link")
-    ibin = Imagebin.new(options)
-    puts ibin.site_link
-elsif options["direct_link"] == "1"
-    options.delete("direct_link")
-    ibin = Imagebin.new(options)
-    puts ibin.pic_link
-end
+conf = YAML.load_file("#{ENV['HOME']}/.imgur.yaml")
+options['key'] = conf['key']
+ibin = Imagebin.new(options)
+puts ibin.original_image
+

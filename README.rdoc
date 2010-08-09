@@ -1,16 +1,20 @@
 = imagebin
 
-imagebin is a CLI to http://imagebin.ca
+imagebin is a CLI to http://imgur.com
+This program looks for your API key in ~/.imgur.yaml
+
     Example: imagebin -f <pic.png>
 
 Options:
     -f, --file <file>                Use a file for input
-    -n, --name [name]                Name
-    -t, --tags [tags]                Comma separated
-    -d, --description [description]  Description
-    -p, --private                    Private
-    -l, --link                       Direct link to picture file
     -h, --help                       Show this message
+
+
+Here is an example of what ~/.imgur.yaml should look like:
+
+--- 
+key: 543e908c545620bd1c44d43edf3a35a0
+
 
 == Copyright
 
