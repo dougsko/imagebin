@@ -21,7 +21,7 @@
 
 require 'rubygems'
 require 'optparse'
-require 'lib/imagebin'
+require 'imagebin'
 
 options = { "image" => "file", 
             "key" => "",

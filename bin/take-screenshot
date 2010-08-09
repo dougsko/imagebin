@@ -6,7 +6,7 @@
 #
 
 require 'rubygems'
-require 'lib/imagebin'
+require 'imagebin'
 
 # Location to save files
 working_dir = "/tmp"
