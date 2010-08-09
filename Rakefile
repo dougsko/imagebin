@@ -5,12 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "imagebin"
-    gem.summary = %Q{Command line interface to imagebin.ca}
+    gem.summary = %Q{Command line interface to imgur.com}
     gem.email = "dougtko@gmail.com"
     gem.homepage = "http://github.com/dougsko/imagebin"
     gem.authors = ["dougsko"]
     gem.add_dependency 'httpclient'
-    gem.description = 'Command line interface to imagebin.ca'
+    gem.description = 'Command line interface to imgur.com'
     gem.require_paths = ['/bin', '/lib']
     gem.files = FileList["[A-Z]*", "{bin,generators,lib,spec}/**/*"]
     gem.add_dependency "hpricot"
