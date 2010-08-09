@@ -12,8 +12,8 @@ Options:
 
 Here is an example of what ~/.imgur.yaml should look like:
 
-  --- 
-  key: 543e908c545620bd1c44d43edf3a35a0
+    --- 
+    key: 543e908c545620bd1c44d43edf3a35a0
 
 
 == Copyright
