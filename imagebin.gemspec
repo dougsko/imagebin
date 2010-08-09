@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{imagebin}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["dougsko"]
   s.date = %q{2010-08-09}
-  s.description = %q{Command line interface to imagebin.ca}
+  s.description = %q{Command line interface to imgur.com}
   s.email = %q{dougtko@gmail.com}
   s.executables = ["take-screenshot", "imagebin"]
   s.extra_rdoc_files = [
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["/bin", "/lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Command line interface to imagebin.ca}
+  s.summary = %q{Command line interface to imgur.com}
   s.test_files = [
     "spec/imagebin_spec.rb",
      "spec/spec_helper.rb"
