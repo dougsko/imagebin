@@ -20,7 +20,7 @@ class Imagebin
             clnt = HTTPClient.new
             res = clnt.post('http://imgur.com/api/upload.xml', @options).content
             @doc = Document.new(res)
-            raise @doc.elements.to_a("//error_msg")[0].text if @doc.elements.to_a("//error_msg")[0].text != nil
+            raise @doc.elements.to_a("//error_msg")[0].text if @doc.elements.to_a("//error_msg").length > 0
         end
     end
 
