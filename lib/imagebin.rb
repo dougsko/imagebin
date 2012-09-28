@@ -2,7 +2,6 @@
 #
 # imgur.com API
 #
-require 'rubygems'
 require 'httpclient'
 require 'rexml/document'
 
@@ -17,7 +16,13 @@ class Imagebin
         res = HTTPClient.post('http://imgur.com/api/upload.xml',
                               {:image => File.open(@options['image']),
                                :key => @options['key']}).content
-        @doc = Document.new(res)
+        begin
+            @doc = Document.new(res)
+        rescue
+            res[/<h1>(.*)<\/h1>/]
+            puts $1
+            exit
+        end
         raise @doc.elements.to_a("//error_msg")[0].text if @doc.elements.to_a("//error_msg").length > 0
     end
 
