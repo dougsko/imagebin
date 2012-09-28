@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "VERSION.yml",
     "bin/imagebin",
     "bin/take-screenshot",
+    "imagebin.gemspec",
     "lib/imagebin.rb",
     "spec/ZGrass04.jpg",
     "spec/imagebin_spec.rb",
